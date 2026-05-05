@@ -1,5 +1,7 @@
 package es.Luque.AirsoftManager.model;
 
+import es.Luque.AirsoftManager.model.enums.ModoDeJuego;
+
 import java.util.Date;
 
 public class Partida {

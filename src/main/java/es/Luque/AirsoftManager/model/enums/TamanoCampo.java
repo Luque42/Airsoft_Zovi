@@ -1,4 +1,4 @@
-package es.Luque.AirsoftManager.model;
+package es.Luque.AirsoftManager.model.enums;
 
 public enum TamanoCampo {
     MINI,

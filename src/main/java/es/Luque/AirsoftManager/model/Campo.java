@@ -6,5 +6,10 @@ public class Campo {
     private int id;
     private String nombre;
     private TamanoCampo tamano;
-    private String tipo;
+
+    public Campo(int id, String nombre, TamanoCampo tamano) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tamano = tamano;
+    }
 }

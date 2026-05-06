@@ -1,6 +1,7 @@
 package es.Luque.AirsoftManager.model;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 public class Jugador {
     private int id;

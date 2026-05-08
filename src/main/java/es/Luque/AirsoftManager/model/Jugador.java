@@ -10,19 +10,41 @@ public class Jugador {
     private String nombre;
     private String apellidos;
     private double altura;
-    private LocalDate fechaNacimiento;
+    private LocalDate fNacimiento;
 
-    public Jugador(int id, String dni, String nombre, String apellidos, double altura, Date fechaNacimiento) {
+
+    public Jugador(int id, String dni, String nombre, String apellidos, double altura, LocalDate fNacimiento) {
         this.id = id;
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.altura = altura;
-        this.fechaNacimiento = fechaNacimiento;
+        this.fNacimiento = fNacimiento;
+
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public LocalDate getfNacimiento() {
+        return fNacimiento;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public double getAltura() {
+        return altura;
     }
 
     @Override
@@ -32,8 +54,6 @@ public class Jugador {
                 ", dni='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
-                ", altura=" + altura +
-                ", fechaNacimiento=" + fechaNacimiento +
-                '}';
+                ", altura=" + altura;
     }
 }

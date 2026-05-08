@@ -18,6 +18,18 @@ public abstract class Campo {
         this.tamano = tamano;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public TamanoCampo getTamano() {
+        return tamano;
+    }
+
     @Override
     public String toString() {
         return "Campo{" +

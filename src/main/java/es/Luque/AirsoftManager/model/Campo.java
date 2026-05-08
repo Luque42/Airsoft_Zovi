@@ -2,7 +2,7 @@ package es.Luque.AirsoftManager.model;
 
 import es.Luque.AirsoftManager.model.enums.TamanoCampo;
 
-public class Campo {
+public abstract class Campo {
     private int id;
     private String nombre;
     private TamanoCampo tamano;
@@ -11,5 +11,19 @@ public class Campo {
         this.id = id;
         this.nombre = nombre;
         this.tamano = tamano;
+    }
+
+    public Campo(String nombre, TamanoCampo tamano) {
+        this.nombre = nombre;
+        this.tamano = tamano;
+    }
+
+    @Override
+    public String toString() {
+        return "Campo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", tamano=" + tamano +
+                '}';
     }
 }

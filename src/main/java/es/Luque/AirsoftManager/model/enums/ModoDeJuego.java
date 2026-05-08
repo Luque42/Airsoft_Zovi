@@ -7,6 +7,6 @@ public enum ModoDeJuego {
     TOMAR_LA_BANDERA,
     BYD,
     DEFENSA_DEL_CUARTEL,
-    SUPERVIVENCIA_ZOMBIE;
+    SUPERVIVENCIA_ZOMBIE
 
 }

@@ -1,10 +1,11 @@
-module org.example.airsoft_zovi {
+module es.Luque.AirsoftManager {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
     requires java.xml.bind;
 
-
+    opens es.Luque.AirsoftManager.dataaccess to java.xml.bind;
+    exports es.Luque.AirsoftManager.dataaccess;
     opens es.Luque.AirsoftManager to javafx.fxml;
     exports es.Luque.AirsoftManager;
     exports es.Luque.AirsoftManager.controllers;

@@ -6,4 +6,11 @@ public class CampoInterior extends Campo{
     public CampoInterior(int id, String nombre, TamanoCampo tamano) {
         super(id, nombre, tamano);
     }
+    public CampoInterior(String nombre, TamanoCampo tamano) {
+        super(nombre, tamano);
+    }
+    @Override
+    public String toString() {
+        return "CampoInterior{" + super.toString();
+    }
 }

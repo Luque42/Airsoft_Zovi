@@ -39,6 +39,12 @@ public class ConnectionBD {
     public static ConnectionBD getInstance() {
         if(_instance==null){
             _instance = new ConnectionBD();
+            try {
+                _instance.connect();
+            } catch (SQLException e) {
+                System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
         return _instance;
     }

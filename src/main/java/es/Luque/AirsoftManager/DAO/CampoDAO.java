@@ -4,6 +4,7 @@ import es.Luque.AirsoftManager.dataaccess.ConnectionBD;
 import es.Luque.AirsoftManager.model.Campo;
 import es.Luque.AirsoftManager.model.CampoExterior;
 import es.Luque.AirsoftManager.model.CampoInterior;
+import es.Luque.AirsoftManager.model.Jugador;
 import es.Luque.AirsoftManager.model.enums.TamanoCampo;
 
 import java.sql.*;
@@ -102,6 +103,20 @@ public class CampoDAO {
         }
         return false;
 
+        /**
+         * Actualiza un campo existente en la base de datos. El campo se identifica por su ID.
+         * @param jugador jugador a actualizar con los nuevos datos. El ID del jugador no debe ser modificado.
+         * @throws SQLException
+         */
+    }
+    public static void updateCampoI(CampoInterior campo) throws SQLException {
+        if ((campo != null) && findByName(campo.getNombre()) != null) {
+            try (PreparedStatement ps = ConnectionBD.getInstance().getConnection().prepareStatement(SQL_UPDATE)){
+                ps.setString(1, campo.getNombre());
+                ps.setString(2, campo.getTamano().name());
+                ps.executeUpdate();
+            }
+        }
     }
 
 

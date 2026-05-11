@@ -1,6 +1,6 @@
 package es.Luque.AirsoftManager.model.enums;
 
-public enum ModoDeJuego {
+public enum ModoJuego {
     DUELO_POR_EQUIPOS,
     TODOS_CONTRA_TODOS,
     RESCATE_DE_REHENES,

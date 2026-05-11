@@ -13,4 +13,35 @@ public class Replica {
         this.potencia = potencia;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getnSerie() {
+        return nSerie;
+    }
+
+    public void setnSerie(String nSerie) {
+        this.nSerie = nSerie;
+    }
+
+    public int getPotencia() {
+        return potencia;
+    }
+
+    public void setPotencia(int potencia) {
+        this.potencia = potencia;
+    }
 }

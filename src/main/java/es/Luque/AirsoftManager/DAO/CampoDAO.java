@@ -18,6 +18,11 @@ public class CampoDAO {
     private final static String SQL_UPDATE = "UPDATE campo SET nombre =?, tamano =? WHERE ID =?";
     private final static String SQL_DELETE = "DELETE FROM campo WHERE ID =?";
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Campo> findAllExterior() throws SQLException {
         CampoExterior campoE = null;
         ArrayList<Campo> camposE = new ArrayList<>();
@@ -35,6 +40,11 @@ public class CampoDAO {
 
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Campo> findAllInterior() throws SQLException {
         CampoInterior campoI = null;
         ArrayList<Campo> camposE = new ArrayList<>();
@@ -52,6 +62,12 @@ public class CampoDAO {
         return camposE;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public static Campo findById(int id) throws SQLException {
         Campo campo = null;
 
@@ -68,6 +84,12 @@ public class CampoDAO {
         return campo;
     }
 
+    /**
+     *
+     * @param nombre
+     * @return
+     * @throws SQLException
+     */
     public static Campo findByName(String nombre) throws SQLException {
         Campo campo = null;
 

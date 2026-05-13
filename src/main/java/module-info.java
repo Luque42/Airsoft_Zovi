@@ -5,6 +5,7 @@ module es.Luque.AirsoftManager {
     requires java.xml.bind;
     requires javafx.graphics;
 
+
     opens es.Luque.AirsoftManager.dataaccess to java.xml.bind;
     exports es.Luque.AirsoftManager.dataaccess;
     opens es.Luque.AirsoftManager to javafx.fxml;

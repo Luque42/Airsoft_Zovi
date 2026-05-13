@@ -18,17 +18,11 @@ public class MainController {
     public Button backButton;
     public Button inventaryButton;
     public Button adminJugadorButton;
+    public Button crearPartidaButton;
+    public Button adminPartidaButton;
 
 
     @FXML
-    protected void onHelloButtonClick() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Subnormal");
-        alert.setHeaderText("Esto lo tienes que cambiar");
-        alert.setContentText("Que lo cambies so tonto");
-        alert.showAndWait();
-    }
-
     /**
      *
      * @param actionEvent
@@ -74,6 +68,15 @@ public class MainController {
     public void goToAdminJugador(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("admin-Jugador.fxml"));
         Stage nuevo = (Stage) adminJugadorButton.getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        nuevo.setTitle("Panel de administracion de Jugadores");
+        nuevo.setScene(scene);
+    }
+
+
+    public void goToAdminPartida(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("admin-partida.fxml"));
+        Stage nuevo = (Stage) adminPartidaButton.getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         nuevo.setTitle("Panel de administracion de Jugadores");
         nuevo.setScene(scene);

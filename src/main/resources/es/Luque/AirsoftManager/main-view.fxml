@@ -59,7 +59,7 @@
                   <Insets left="10.0" />
                </GridPane.margin>
             </Button>
-            <Button layoutX="310.0" layoutY="31.0" mnemonicParsing="false" prefHeight="84.0" prefWidth="284.0" text="Crear partida" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="adminPartidaButton" layoutX="310.0" layoutY="31.0" mnemonicParsing="false" onAction="#goToAdminPartida" prefHeight="84.0" prefWidth="284.0" text="Crear partida" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="5.0" />
                </GridPane.margin>

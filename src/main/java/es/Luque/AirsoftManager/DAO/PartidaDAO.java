@@ -5,7 +5,7 @@ import es.Luque.AirsoftManager.model.Partida;
 import es.Luque.AirsoftManager.model.enums.ModoJuego;
 
 import java.sql.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class PartidaDAO {
@@ -25,8 +25,8 @@ public class PartidaDAO {
             while (rs.next()) {
                 int ID = rs.getInt("ID");
                 ModoJuego modoDeJuego = ModoJuego.valueOf(rs.getString("ModoJuego"));
-                LocalDate fechaIni = rs.getDate("fecha_ini").toLocalDate();
-                LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
+                LocalDateTime fechaIni = rs.getTimestamp("fecha_ini").toLocalDateTime();
+                LocalDateTime fechaFin = rs.getTimestamp("fecha_fin").toLocalDateTime();
                 partida = new Partida(ID, modoDeJuego, fechaIni, fechaFin);
                 partidas.add(partida);
             }
@@ -43,8 +43,8 @@ public class PartidaDAO {
             if (rs.next()) {
                 int ID = rs.getInt("ID");
                 ModoJuego modoDeJuego = ModoJuego.valueOf(rs.getString("ModoJuego"));
-                LocalDate fechaIni = rs.getDate("fecha_ini").toLocalDate();
-                LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
+                LocalDateTime fechaIni = rs.getTimestamp("fecha_ini").toLocalDateTime();
+                LocalDateTime fechaFin = rs.getTimestamp("fecha_fin").toLocalDateTime();
                 partida = new Partida(ID, modoDeJuego, fechaIni, fechaFin);
             }
         }
@@ -61,8 +61,8 @@ public class PartidaDAO {
             while (rs.next()) {
                 int ID = rs.getInt("ID");
                 ModoJuego modo = ModoJuego.valueOf(rs.getString("ModoJuego"));
-                LocalDate fechaIni = rs.getDate("fecha_ini").toLocalDate();
-                LocalDate fechaFin = rs.getDate("fecha_fin").toLocalDate();
+                LocalDateTime fechaIni = rs.getTimestamp("fecha_ini").toLocalDateTime();
+                LocalDateTime fechaFin = rs.getTimestamp("fecha_fin").toLocalDateTime();
                 partida = new Partida(ID, modo, fechaIni, fechaFin);
                 partidas.add(partida);
             }
@@ -80,8 +80,8 @@ public class PartidaDAO {
         if (partida != null) {
             try (PreparedStatement ps = ConnectionBD.getInstance().getConnection().prepareStatement(SQL_INSERT)) {
                 ps.setString(1, partida.getModoDeJuego().name());
-                ps.setDate(2, Date.valueOf(partida.getFechaIni()));
-                ps.setDate(3, Date.valueOf(partida.getFechaFin()));
+                ps.setTimestamp(2, Timestamp.valueOf(partida.getFechaIni()));
+                ps.setTimestamp(3, Timestamp.valueOf(partida.getFechaFin()));
                 ps.executeUpdate();
                 return true;
             }
@@ -98,8 +98,8 @@ public class PartidaDAO {
         if (partida != null) {
             try (PreparedStatement ps = ConnectionBD.getInstance().getConnection().prepareStatement(SQL_UPDATE)) {
                 ps.setString(1, partida.getModoDeJuego().name());
-                ps.setDate(2, Date.valueOf(partida.getFechaIni()));
-                ps.setDate(3, Date.valueOf(partida.getFechaFin()));
+                ps.setTimestamp(2, Timestamp.valueOf(partida.getFechaIni()));
+                ps.setTimestamp(3, Timestamp.valueOf(partida.getFechaFin()));
                 ps.setInt(4, partida.getId());
                 ps.executeUpdate();
             }

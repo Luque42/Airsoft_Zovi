@@ -60,7 +60,6 @@ public class CrearPartidaController {
             spinMinutoFin.getValueFactory().setValue(partida.getFechaFin().getMinute());
 
             cmbModoDeJuego.setValue(partida.getModoDeJuego());
-            // If Partida had a campo associated we would set it here; currently Partida model does not store campo
             tituloFormularioLabel.setText("Editar partida");
         } else {
             dpFechaIni.setValue(null);
@@ -195,11 +194,6 @@ public class CrearPartidaController {
                     Utils.errorAlert("Error", "Error al editar", "No se ha podido editar la partida: " + e.getMessage());
                 }
             }
-
-            // Nota: actualmente no se persiste la relación partida->campo porque la clase Partida y PartidaDAO
-            // no tienen un campo/columna para ello en el código del proyecto. Si quieres que la selección
-            // del `cmbCampo` se guarde en la base de datos, dime el resultado de `SHOW CREATE TABLE partida;`
-            // y lo implemento: añadiré el campo en el modelo y actualizaré PartidaDAO para persistir el campo_id.
 
         } catch (SQLException e) {
             Utils.errorAlert("Error", "Error al realizar la operación", "No se ha podido conectar a la Base de datos: " + e.getMessage());

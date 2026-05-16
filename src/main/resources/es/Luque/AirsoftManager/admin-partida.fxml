@@ -46,6 +46,7 @@
             <Separator layoutX="1.0" layoutY="49.0" prefHeight="0.0" prefWidth="418.0" />
             <ListView fx:id="partidasView" layoutX="6.0" layoutY="57.0" prefHeight="263.0" prefWidth="406.0" />
             <Button fx:id="backButton" layoutX="39.0" layoutY="329.0" mnemonicParsing="false" onAction="#volverAlMenuPrincipal" text="Volver" />
+            <Button fx:id="recargarbtn" layoutX="332.0" layoutY="329.0" mnemonicParsing="false" onAction="#recargar" text="Recargar" />
          </children></AnchorPane>
   </items>
 </SplitPane>

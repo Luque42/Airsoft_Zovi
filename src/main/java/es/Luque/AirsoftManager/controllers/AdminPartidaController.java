@@ -26,6 +26,7 @@ public class AdminPartidaController {
     public Button EliminarPartidaButton;
     public Button btnEditar;
     public Button backButton;
+    public Button recargarbtn;
 
     @FXML
     private ListView <Partida> partidasView = new ListView<>();
@@ -75,17 +76,7 @@ public class AdminPartidaController {
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.setTitle("Editar Partida");
         dialog.setScene(scene);
-        dialog.showAndWait(); // wait until closed
-
-        // After dialog is closed, reload list and reselect the edited partida
-        cargarLibros();
-        for (Partida p : partidasView.getItems()) {
-            if (p.getId() == partida.getId()) {
-                partidasView.getSelectionModel().select(p);
-                partidasView.scrollTo(p);
-                break;
-            }
-        }
+        dialog.showAndWait();
     }
     private void cargarLibros() throws SQLException {
         List<Partida> libros = PartidaDAO.findAll();
@@ -122,34 +113,6 @@ public class AdminPartidaController {
             }
 
         });
-
-
-//        partidasView.getSelectionModel().selectedItemProperty()
-//                .addListener((observable, oldValue, newValue) -> {
-//                    mostrarPartidaEnPanel(newValue);
-//                });
-//
-//        partidasView.setPlaceholder(new Label("No hay partidas para mostrar"));
-//        EliminarPartidaButton.disableProperty().bind(
-//                partidasView.getSelectionModel().selectedItemProperty().isNull()
-//        );
-//        btnEditar.disableProperty().bind(
-//                partidasView.getSelectionModel().selectedItemProperty().isNull()
-//        );
-//    }
-//    private void mostrarLibroEnPanel(Partida partida) {
-//        if (partida != null) {
-//            detalleTituloLabel.setText(partida.getTitulo());
-//            detalleAutorLabel.setText(partida.getAutor().getNombre());
-//            detalleIdLabel.setText(String.valueOf(partida.getIdLibro()));
-//            detalleIsbnLabel.setText(partida.getISBN());
-//        } else {
-//            detalleTituloLabel.setText(null);
-//            detalleAutorLabel.setText(null);
-//            detalleIdLabel.setText(null);
-//            detalleIsbnLabel.setText(null);
-//        }
-
     }
 
 
@@ -167,9 +130,6 @@ public class AdminPartidaController {
             try {
                 // borramos de la BD
                 PartidaDAO.deletePartida(partida.getId());
-                // Borramos de nuestra lista.
-                partidasView.getItems().remove(partida);
-                partidasView.getSelectionModel().clearSelection();
             } catch (SQLException e) {
                 Utils.mostrarDialogo("Error", "Error de base de datos", "No se ha podido borrar la partida en la BD: " + e.getMessage(), Alert.AlertType.ERROR);
             }
@@ -184,5 +144,9 @@ public class AdminPartidaController {
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         nuevo.setTitle("Airsoft Zovi");
         nuevo.setScene(scene);
+    }
+
+    public void recargar(ActionEvent actionEvent) throws SQLException {
+        cargarLibros();
     }
 }

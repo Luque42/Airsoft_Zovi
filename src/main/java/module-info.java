@@ -12,4 +12,7 @@ module es.Luque.AirsoftManager {
     exports es.Luque.AirsoftManager;
     exports es.Luque.AirsoftManager.controllers;
     opens es.Luque.AirsoftManager.controllers to javafx.fxml;
+    exports es.Luque.AirsoftManager.model;
+    opens es.Luque.AirsoftManager.model to javafx.fxml;
+    exports es.Luque.AirsoftManager.model.enums;
 }

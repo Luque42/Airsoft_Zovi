@@ -1,10 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="untitled" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25">
-  <content>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-  </content>
-</TitledPane>
+<VBox prefHeight="280.0" prefWidth="500" spacing="12" styleClass="panel-box" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.Luque.AirsoftManager.controllers.CrearPartidaController">
+   <padding>
+      <Insets bottom="18" left="18" right="18" top="18" />
+   </padding>
+   <children>
+      <Label fx:id="tituloFormularioLabel" text="Nueva Partida">
+         <styleClass>
+            <String fx:value="section-title" />
+            <String fx:value="h3" />
+         </styleClass>
+      </Label>
+      <GridPane hgap="10" vgap="12">
+         <columnConstraints>
+            <ColumnConstraints minWidth="90" />
+            <ColumnConstraints hgrow="ALWAYS" />
+            <ColumnConstraints minWidth="50" />
+            <ColumnConstraints minWidth="50" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+          <children>
+             <Label styleClass="field-label" text="Fecha Inicio" GridPane.rowIndex="1" />
+             <DatePicker fx:id="dpFechaIni" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <Label styleClass="field-label" text="Hora" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+             <HBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <children>
+                   <Spinner fx:id="spinHoraIni" editable="true" prefWidth="50" />
+                   <Label text=":" />
+                   <Spinner fx:id="spinMinutoIni" editable="true" prefWidth="50" />
+                </children>
+             </HBox>
+             <Label styleClass="field-label" text="Fecha Fin" GridPane.rowIndex="2" />
+             <DatePicker fx:id="dpFechaFin" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+             <Label styleClass="field-label" text="Hora" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+             <HBox spacing="5" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <children>
+                   <Spinner fx:id="spinHoraFin" editable="true" prefWidth="50" />
+                   <Label text=":" />
+                   <Spinner fx:id="spinMinutoFin" editable="true" prefWidth="50" />
+                </children>
+             </HBox>
+             <Label styleClass="field-label" text="Modo de juego" GridPane.rowIndex="3" />
+             <ComboBox fx:id="cmbModoDeJuego" maxWidth="1.7976931348623157E308" promptText="Selecciona modo de juego" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+            <Label styleClass="field-label" text="Campo" />
+            <ComboBox fx:id="cmbCampo" maxWidth="1.7976931348623157E308" promptText="Selecciona campo" GridPane.columnIndex="1" />
+          </children>
+      </GridPane>
+      <HBox alignment="CENTER_RIGHT" spacing="10">
+         <children>
+            <Button onAction="#cerrarVentana" text="Cancelar">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-danger" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnGuardar" defaultButton="true" onAction="#guardarPartida" text="Guardar">
+               <styleClass>
+                  <String fx:value="btn" />
+                  <String fx:value="btn-success" />
+               </styleClass>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

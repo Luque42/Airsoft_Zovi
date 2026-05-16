@@ -20,4 +20,9 @@ public class Utils {
         alert.setContentText(mensaje);
         return alert.showAndWait();
     }
+
+    public static boolean mostrarConfirmacion(String titulo, String mensaje) {
+        Optional<ButtonType> result = mostrarDialogo(titulo, "", mensaje, Alert.AlertType.CONFIRMATION);
+        return result.isPresent() && result.get() == ButtonType.OK;
+    }
 }

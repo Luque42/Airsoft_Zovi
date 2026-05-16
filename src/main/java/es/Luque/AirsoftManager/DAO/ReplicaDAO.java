@@ -24,7 +24,7 @@ public class ReplicaDAO {
                 int ID = rs.getInt("ID");
                 String nombre = rs.getString("nombre");
                 String nSerie = rs.getString("nSerie");
-                int potencia = rs.getInt("potencia");
+                int potencia = extraerPotencia(rs.getString("potencia"));
                 replica = new Replica(ID, nombre, nSerie, potencia);
                 replicas.add(replica);
             }
@@ -42,7 +42,7 @@ public class ReplicaDAO {
                 int ID = rs.getInt("ID");
                 String nombre = rs.getString("nombre");
                 String nSerie = rs.getString("nSerie");
-                int potencia = rs.getInt("potencia");
+                int potencia = extraerPotencia(rs.getString("potencia"));
                 replica = new Replica(ID, nombre, nSerie, potencia);
             }
         }
@@ -59,7 +59,7 @@ public class ReplicaDAO {
                 int ID = rs.getInt("ID");
                 String nombreReplica = rs.getString("nombre");
                 String nSerie = rs.getString("nSerie");
-                int potencia = rs.getInt("potencia");
+                int potencia = extraerPotencia(rs.getString("potencia"));
                 replica = new Replica(ID, nombreReplica, nSerie, potencia);
             }
         }
@@ -111,6 +111,24 @@ public class ReplicaDAO {
         try (PreparedStatement ps = ConnectionBD.getInstance().getConnection().prepareStatement(SQL_DELETE)) {
             ps.setInt(1, id);
             ps.executeUpdate();
+        }
+    }
+
+    /**
+     * Extrae el valor numérico de potencia de un string que puede contener texto adicional
+     * @param potenciaStr string que puede ser "345" o "345 FPS" u otros formatos
+     * @return el valor numérico de potencia
+     */
+    private static int extraerPotencia(String potenciaStr) {
+        if (potenciaStr == null || potenciaStr.trim().isEmpty()) {
+            return 0;
+        }
+        try {
+            // Extrae solo los dígitos del inicio del string
+            String numeros = potenciaStr.trim().replaceAll("[^0-9].*", "");
+            return numeros.isEmpty() ? 0 : Integer.parseInt(numeros);
+        } catch (NumberFormatException e) {
+            return 0;
         }
     }
 }

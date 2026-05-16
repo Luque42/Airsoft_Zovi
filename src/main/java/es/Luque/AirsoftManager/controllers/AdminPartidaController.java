@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
@@ -22,15 +23,14 @@ import java.util.Optional;
 public class AdminPartidaController {
     @FXML
     public Button crearPartidaButton;
-    public Button btnRecargar;
     public Button EliminarPartidaButton;
+    public Button btnEditar;
+    public Button backButton;
 
     @FXML
     private ListView <Partida> partidasView = new ListView<>();
 
-    public void recargar(ActionEvent actionEvent) throws SQLException {
-        cargarLibros();
-    }
+
     @FXML
     private void initialize() {
         configurarLista();
@@ -38,7 +38,7 @@ public class AdminPartidaController {
             ConnectionBD.getInstance().connect();
             cargarLibros();
             EliminarPartidaButton.setDisable(false);
-            btnRecargar.setDisable(false);
+
 
         } catch (SQLException e) {
             Utils.errorAlert("Error", "Error de conexión", "No se ha podido conectar a la Base de datos: " + e.getMessage());
@@ -47,13 +47,45 @@ public class AdminPartidaController {
 
 
     public void goToCrearPartida(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("crearPartida.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("CrearPartida.fxml"));
         Stage nuevo = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        nuevo.setTitle("Panel de administracion de Jugadores");
+        Scene scene = new Scene(fxmlLoader.load(), 600, 300);
+        nuevo.setTitle("Gestionar Partida");
         nuevo.setScene(scene);
+        
+        CrearPartidaController controller = fxmlLoader.getController();
+        controller.inicializar(null);
+        
         nuevo.show();
+    }
+    
+    public void editarPartida(ActionEvent actionEvent) throws IOException, SQLException {
+        Partida partida = partidasView.getSelectionModel().getSelectedItem();
+        if (partida == null) {
+            Utils.mostrarDialogo("Error", "No hay partida seleccionada", "Debe seleccionar una partida para editar", Alert.AlertType.ERROR);
+            return;
+        }
 
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("CrearPartida.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 600, 300);
+        CrearPartidaController controller = fxmlLoader.getController();
+        controller.inicializar(partida);
+
+        Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.setTitle("Editar Partida");
+        dialog.setScene(scene);
+        dialog.showAndWait(); // wait until closed
+
+        // After dialog is closed, reload list and reselect the edited partida
+        cargarLibros();
+        for (Partida p : partidasView.getItems()) {
+            if (p.getId() == partida.getId()) {
+                partidasView.getSelectionModel().select(p);
+                partidasView.scrollTo(p);
+                break;
+            }
+        }
     }
     private void cargarLibros() throws SQLException {
         List<Partida> libros = PartidaDAO.findAll();
@@ -144,5 +176,13 @@ public class AdminPartidaController {
         }
         
 
+    }
+
+    public void volverAlMenuPrincipal(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
+        Stage nuevo = (Stage) crearPartidaButton.getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        nuevo.setTitle("Airsoft Zovi");
+        nuevo.setScene(scene);
     }
 }

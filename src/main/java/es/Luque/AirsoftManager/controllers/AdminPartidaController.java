@@ -139,11 +139,7 @@ public class AdminPartidaController {
     }
 
     public void volverAlMenuPrincipal(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Stage nuevo = (Stage) crearPartidaButton.getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        nuevo.setTitle("Airsoft Zovi");
-        nuevo.setScene(scene);
+        Utils.backToMenu(backButton);
     }
 
     public void recargar(ActionEvent actionEvent) throws SQLException {

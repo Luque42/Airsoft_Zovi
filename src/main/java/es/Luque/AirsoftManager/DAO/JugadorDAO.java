@@ -33,8 +33,7 @@ public class JugadorDAO {
         }
         return jugadores;
     }
-    public static void addJugador(Jugador jugador) throws SQLException {
-
+    public static boolean addJugador(Jugador jugador) throws SQLException {
         if ((jugador != null) && findByName(jugador.getNombre()) == null) {
             try (PreparedStatement ps = ConnectionBD.getInstance().getConnection().prepareStatement(SQL_INSERT)){
                 ps.setString(1, jugador.getDni());
@@ -43,8 +42,10 @@ public class JugadorDAO {
                 ps.setDouble(4, jugador.getAltura());
                 ps.setDate(5, Date.valueOf(jugador.getfNacimiento()));
                 ps.executeUpdate();
+                return true;
             }
         }
+        return false;
     }
     public static Jugador findByName(String nombre) throws SQLException {
         Jugador jugador = null;
@@ -71,7 +72,7 @@ public class JugadorDAO {
      * @throws SQLException
      */
     public static void updateJugador(Jugador jugador) throws SQLException {
-        if ((jugador != null) && findByName(jugador.getNombre()) != null) {
+        if (jugador != null) {
             try (PreparedStatement ps = ConnectionBD.getInstance().getConnection().prepareStatement(SQL_UPDATE)){
                 ps.setString(1, jugador.getDni());
                 ps.setString(2, jugador.getNombre());

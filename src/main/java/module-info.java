@@ -4,6 +4,8 @@ module es.Luque.AirsoftManager {
     requires java.sql;
     requires java.xml.bind;
     requires javafx.graphics;
+    requires javafx.base;
+
 
 
     opens es.Luque.AirsoftManager.dataaccess to java.xml.bind;

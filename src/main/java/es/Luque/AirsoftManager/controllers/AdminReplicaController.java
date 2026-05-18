@@ -213,10 +213,8 @@ public class AdminReplicaController {
 
     @FXML
     private void volverAlMenuPrincipal(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Stage nuevo = (Stage) backButton1.getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        nuevo.setTitle("Airsoft Zovi");
-        nuevo.setScene(scene);
+        Utils.backToMenu(backButton1);
     }
+
+
 }

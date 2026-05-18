@@ -42,20 +42,6 @@ public class MainController {
      * @param actionEvent
      * @throws IOException
      */
-    public void volverAlMenuPrincipal(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main-view.fxml"));
-        Stage nuevo = (Stage) backButton.getScene().getWindow();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        nuevo.setTitle("Airsoft Zovi");
-        nuevo.setScene(scene);
-
-    }
-
-    /**
-     *
-     * @param actionEvent
-     * @throws IOException
-     */
     public void goToReplica(ActionEvent actionEvent)throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("admin-replica.fxml"));
         Stage nuevo = (Stage) inventaryButton.getScene().getWindow();
